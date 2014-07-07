@@ -26,16 +26,43 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( -1 );
 }
 
+
+$wgExtensionCredits['skin'][] = array(
+	'path' => __FILE__,
+	'name' => 'Shopping 2020', // name as shown under [[Special:Version]]
+	'date' => '20140428', 
+	'url' => "http://wikibase.nl",
+	'author' => 'Wikibase.nl',
+	'descriptionmsg' => 'myskin-desc',
+);
+
+$wgAutoloadClasses['SkinShopping1920'] = __DIR__ . '/Shopping1920.php';
+$wgValidSkinNames['shopping1920'] = 'Shopping1920';
+$wgExtensionMessagesFiles['Shopping1920'] = __DIR__ .'/shopping1920/Shopping1920.i18n.php';
+
+$wgResourceModules['skins.shopping1920'] = array(
+	'styles' => array(
+			'common/commonElements.css' => array( 'media' => 'screen' ),
+			'common/commonContent.css' => array( 'media' => 'screen' ),
+			'common/commonInterface.css' => array( 'media' => 'screen' ),
+			'shopping1920/styles.less',
+	),
+	'remoteBasePath' => &$GLOBALS['wgStylePath'],
+	'localBasePath' => &$GLOBALS['wgStyleDirectory'],
+);
+
 /**
- * SkinTemplate class for Vector skin
+ * SkinTemplate class for Shopping1920 skin
  * @ingroup Skins
  */
-class SkinVector extends SkinTemplate {
+class SkinShopping1920 extends SkinTemplate {
 
 	protected static $bodyClasses = array( 'vector-animateLayout' );
 
 	var $skinname = 'vector', $stylename = 'vector',
 		$template = 'VectorTemplate', $useHeadElement = true;
+	var $skinname = 'shopping1920', $stylename = 'shopping1920',
+		$template = 'Shopping1920Template', $useHeadElement = true;
 
 	/**
 	 * Initializes output page and sets up skin-specific parameters
