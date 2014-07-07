@@ -59,6 +59,8 @@ class SkinShopping1920 extends SkinTemplate {
 
 	protected static $bodyClasses = array( 'vector-animateLayout' );
 
+	var $skinname = 'vector', $stylename = 'vector',
+		$template = 'VectorTemplate', $useHeadElement = true;
 	var $skinname = 'shopping1920', $stylename = 'shopping1920',
 		$template = 'Shopping1920Template', $useHeadElement = true;
 
@@ -91,6 +93,8 @@ class SkinShopping1920 extends SkinTemplate {
 	function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
 
+		$styles = array( 'mediawiki.skinning.interface', 'skins.vector.styles' );
+		wfRunHooks( 'SkinVectorStyleModules', array( $this, &$styles ) );
 		$styles = array( 'skins.shopping1920' );
 		wfRunHooks( 'SkinShopping1920StyleModules', array( &$this, &$styles ) );
 		$out->addModuleStyles( $styles );
