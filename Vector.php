@@ -95,6 +95,8 @@ class SkinShopping1920 extends SkinTemplate {
 
 		$styles = array( 'mediawiki.skinning.interface', 'skins.vector.styles' );
 		wfRunHooks( 'SkinVectorStyleModules', array( $this, &$styles ) );
+		$styles = array( 'skins.shopping1920' );
+		wfRunHooks( 'SkinShopping1920StyleModules', array( &$this, &$styles ) );
 		$out->addModuleStyles( $styles );
 	}
 
@@ -114,10 +116,10 @@ class SkinShopping1920 extends SkinTemplate {
 }
 
 /**
- * QuickTemplate class for Vector skin
+ * QuickTemplate class for Shopping1920 skin
  * @ingroup Skins
  */
-class VectorTemplate extends BaseTemplate {
+class Shopping1920Template extends BaseTemplate {
 
 	/* Functions */
 
@@ -181,6 +183,16 @@ class VectorTemplate extends BaseTemplate {
 		// Output HTML Page
 		$this->html( 'headelement' );
 ?>
+<?php
+global $wgUser; if( $wgUser->isAnon() ) { ?>
+      <style type="text/css">
+        #ca-viewsource, #left-navigation, #pt-anonuserpage, #pt-anontalk, #p-views, #p-tb { display: none !important; } #mw-page-base {height: 2.4em} #p-search{margin-right:15em;
+margin-top: -2.7em;}
+      </style> 
+    <?php } ?>
+    
+<div id="wrapper" class="noprint">
+
 		<div id="mw-page-base" class="noprint"></div>
 		<div id="mw-head-base" class="noprint"></div>
 		<div id="content" class="mw-body" role="main">
@@ -241,30 +253,17 @@ class VectorTemplate extends BaseTemplate {
 					<div id="p-logo" role="banner"><a style="background-image: url(<?php $this->text( 'logopath' ) ?>);" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ) ?>></a></div>
 				<?php $this->renderPortals( $this->data['sidebar'] ); ?>
 			</div>
-		</div>
-		<div id="footer" role="contentinfo"<?php $this->html( 'userlangattributes' ) ?>>
-			<?php foreach ( $this->getFooterLinks() as $category => $links ) { ?>
-				<ul id="footer-<?php echo $category ?>">
-					<?php foreach ( $links as $link ) { ?>
-						<li id="footer-<?php echo $category ?>-<?php echo $link ?>"><?php $this->html( $link ) ?></li>
-					<?php } ?>
-				</ul>
-			<?php } ?>
-			<?php $footericons = $this->getFooterIcons( "icononly" );
-			if ( count( $footericons ) > 0 ) { ?>
-				<ul id="footer-icons" class="noprint">
-<?php			foreach ( $footericons as $blockName => $footerIcons ) { ?>
-					<li id="footer-<?php echo htmlspecialchars( $blockName ); ?>ico">
-<?php				foreach ( $footerIcons as $icon ) { ?>
-						<?php echo $this->getSkin()->makeFooterIcon( $icon ); ?>
+			
+<div id="footer" class="noprint">
+<div style="width:100%;">
+<?php echo wfMessage( 'Footerlinks' )->parse();?>
+</div>
+</div>
 
-<?php				} ?>
-					</li>
-<?php			} ?>
-				</ul>
-			<?php } ?>
-			<div style="clear:both"></div>
-		</div>
+<div id="toes" class="noprint">
+<?php echo wfMessage( 'Toes' )->parse();?> <a class="PoweredByWikibase" href="http://www.wikibase.nl/"><img src="/skins/shopping1920/images/PoweredByWikibase.png"></a>
+</div>
+
 		<?php $this->printTrail(); ?>
 
 	</body>
@@ -479,6 +478,8 @@ class VectorTemplate extends BaseTemplate {
 			?>
 		</div>
 	</form>
+</div>
+
 </div>
 <?php
 
