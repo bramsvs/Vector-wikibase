@@ -238,7 +238,7 @@ margin-top: -2.7em;}
 				<?php $this->html( 'debughtml' ); ?>
 			</div>
 		</div>
-		<div id="mw-navigation">
+		<div id="mw-navigation" class="noprint">
 			<h2><?php $this->msg( 'navigation-heading' ) ?></h2>
 			<div id="mw-head">
 				<?php $this->renderNavigation( 'PERSONAL' ); ?>
@@ -249,7 +249,7 @@ margin-top: -2.7em;}
 					<?php $this->renderNavigation( array( 'VIEWS', 'ACTIONS', 'SEARCH' ) ); ?>
 				</div>
 			</div>
-			<div id="mw-panel">
+			<div id="mw-panel" class="noprint">
 					<div id="p-logo" role="banner"><a style="background-image: url(<?php $this->text( 'logopath' ) ?>);" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ) ?>></a></div>
 				<?php $this->renderPortals( $this->data['sidebar'] ); ?>
 			</div>
